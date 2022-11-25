@@ -1,0 +1,53 @@
+﻿@*Define model*@
+
+@model IEnumerable<ApplicationUser>
+
+@*Define ViewData*@
+
+@{
+    ViewData["Title"] = "List of Users";
+}
+
+@*Write code*@
+
+<h1>Welcome To Moca's Movies</h1>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <table class="table">
+            <thead>
+                <tr class="text-centre">
+                    <th>Full Name</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th>Actions</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.FullName)
+
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

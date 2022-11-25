@@ -1,0 +1,96 @@
+﻿@*Define model*@
+
+@model Movie
+
+@*Define ViewData*@
+
+@{
+    ViewData["Title"] = "Movie Details";
+}
+
+@*Write code*@
+
+<h1>Welcome To Moca's Movies</h1>
+
+<div class="row">
+
+    <div class="col-md-8 offset-2">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.Title
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.ImgURL" width="100%" alt="@Model.Title">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text">@Model.Describtion</p>
+                        <p class="card-text">
+                            <b>Producer: </b>
+                            <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducerId">
+                                @Model.Producer.FullName
+                            </a>
+
+                        </p>
+                        <p class="card-text"><b>Category: </b>@Model.MovieCategory</p>
+                        <p class="card-text"><b>Start Date: </b>@Model.StartDate.ToString("dd MMM yyyy")</p>
+                        <p class="card-text"><b>End Date: </b>@Model.EndDate.ToString("dd MMM yyyy")</p>
+                        <p class="card-text"><b>Rate: </b>@Model.Movies_Rates[0].TotalRate</p>
+                        @await Html.PartialAsync("_Rating",Model.Id)
+                        <p class="card-text ">
+                            <b>Status: </b>
+                            @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                            {
+                                <span class="badge bg-success text-white">AVAILABLE</span>
+                            }
+                            else if (DateTime.Now > Model.EndDate)
+                            {
+                                <span class="badge bg-danger text-white">EXPIRED</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-primary text-white">UPCOMING</span>
+                            }
+                        </p>
+
+                        <p class="card-text"></p>
+                        <b>Actors:</b>
+                        <hr />
+                        <div class="row">
+                            @foreach (var actor in Model.Actors_Movies)
+                            {
+                                <div class="column text-center">
+                                    <img class="border-info rounded-circle" src="@actor.Actor.ProfilePicURL" style="max-width: 150px" />
+                                    <br />
+                                    <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.FullName</a>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer ">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-controller="Movies" asp-action="Reviews" asp-route-id="@Model.Id">
+                                Reviews
+                            </a>
+                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                Back To List
+                         </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+@await Html.PartialAsync("_MovieVideo", Model.movieVideo.URL)

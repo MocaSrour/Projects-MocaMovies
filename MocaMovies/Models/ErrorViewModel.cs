@@ -1,3 +1,4 @@
+#pragma warning disable CS8602
 namespace MocaMovies.Models
 {
     public class ErrorViewModel

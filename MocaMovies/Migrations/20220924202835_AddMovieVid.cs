@@ -1,0 +1,37 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace MocaMovies.Migrations
+{
+    public partial class AddMovieVid : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+
+
+
+            migrationBuilder.CreateTable(
+                name: "movieVideos",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MovieId = table.Column<int>(type: "int", nullable: false),
+                    URL = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_movieVideos", x => x.id);
+                });
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "movieVideos");
+
+
+        }
+    }
+}

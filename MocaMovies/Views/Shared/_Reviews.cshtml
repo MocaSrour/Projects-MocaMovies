@@ -1,0 +1,25 @@
+﻿@model RatingByUser
+@*@extends('')*@
+
+<script>
+    $(function () {
+        $("#rateYo").rateYo({
+            rating: 0,
+            numStars: 5,
+            maxValue: 5,
+            halfStar: true
+        });
+    });
+</script>
+<div id="rateYo"></div>
+<form asp-controller="Movies" asp-action="AddVote" asp-route-id="">
+    <div class="form-group">
+        <label asp-for="Rate" class="control-label"></label>
+        <input asp-for="Rate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Review" class="control-label"></label>
+        <input asp-for="Review" class="form-control" />
+    </div>
+    <button type="submit" value="Vote" class="btn btn-outline-success float-right">Vote</button>
+</form>

@@ -16,3 +16,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+i {
+    margin-inline: 5px;
+}
+.bg-info {
+    background-color: #a835dc !important;
+}
+.card-header {
+    background-color: #a835dc;
+    border-bottom-color: rgba(140, 130, 115, 0.13);
+}
+@media (min-width: 768px) .offset-md-2 {
+    margin-left: 10.666667%;
+}

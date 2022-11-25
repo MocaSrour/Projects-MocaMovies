@@ -12,22 +12,24 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #6c31d4; /*#6c31d4*/
+    border-color: #39128c;
+   /* #39128c*/
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  background-color: #6c31d4;
+  border-color: #39128c;
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #5c5c5c;
+    /*#5c5c5c*/
 }
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #5c5c5c;
 }
 
 .box-shadow {
